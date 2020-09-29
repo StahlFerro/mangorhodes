@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Getter @Setter @ToString
 public class Mission {
     private UUID uuid;
+    @Size(max = 20)
     private String code;
     private String objective;
     private String type;
