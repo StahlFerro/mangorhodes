@@ -2,11 +2,24 @@ plugins {
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id "org.flywaydb.flyway" version "6.5.1"
 }
 
 group = 'io.stahlferro'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+flyway {
+	def per_db_url = System.getenv('MGR_MYSQL_URL');
+	def per_db_username = System.getenv('MGR_MYSQL_USERNAME');
+	def per_db_password = System.getenv('MGR_MYSQL_PASSWORD');
+	if (per_db_url) { url = per_db_url; }
+	else { url = System.getenv('DB_URL'); }
+	if (per_db_username) { user = per_db_username; }
+	else { user = System.getenv('DB_USERNAME'); }
+	if (per_db_password) { password = per_db_password; }
+	else { password = System.getenv('DB_PASSWORD'); }
+}
 
 configurations {
 	compileOnly {
@@ -24,11 +37,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
+
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
