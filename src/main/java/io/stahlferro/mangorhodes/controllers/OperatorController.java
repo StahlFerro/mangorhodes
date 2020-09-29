@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/operator")
 public class OperatorController {
@@ -17,7 +19,7 @@ public class OperatorController {
     private OperatorRepository repository;
 
     @PostMapping("/add")
-    public ResponseEntity<Operator> addOperator(@RequestBody Operator operator) {
+    public ResponseEntity<Operator> addOperator(@Valid @RequestBody Operator operator) {
         repository.save(operator);
         return new ResponseEntity<>(operator, HttpStatus.CREATED);
     }

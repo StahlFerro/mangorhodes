@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/mission")
 public class MissionController {
@@ -18,7 +20,7 @@ public class MissionController {
     private MissionRepository repository;
 
     @PostMapping("/add")
-    public ResponseEntity<Mission> addMission(@RequestBody Mission mission) {
+    public ResponseEntity<Mission> addMission(@Valid @RequestBody Mission mission) {
         repository.save(mission);
         return new ResponseEntity<>(mission, HttpStatus.CREATED);
     }
