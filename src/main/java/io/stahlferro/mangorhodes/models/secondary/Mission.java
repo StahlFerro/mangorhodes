@@ -29,7 +29,7 @@ public class Mission {
     private long reward;
     private ArrayList<String> operatorCodes;
     @JsonDeserialize(using = LocalDateOptionalTimeDeserializer.class)
-    private LocalDateTime startDate
+    private LocalDateTime startDate;
     @CreationTimestamp
     private Timestamp creationTimeStamp;
     @UpdateTimestamp
