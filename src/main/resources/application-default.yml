@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: ${MGR_MYSQL_URL}
+    username: ${MGR_MYSQL_USERNAME}
+    password: ${MGR_MYSQL_PASSWORD}
+  data:
+    mongodb:
+      host: ${MGR_MONGO_HOST}
+      port: ${MGR_MONGO_PORT}
+      database: ${MGR_MONGO_DBNAME}
+  jpa:
+    hibernate:
+      ddl: update
