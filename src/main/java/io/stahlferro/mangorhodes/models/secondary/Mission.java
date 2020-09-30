@@ -1,6 +1,7 @@
 package io.stahlferro.mangorhodes.models.secondary;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.stahlferro.mangorhodes.annotations.Decimal128;
 import io.stahlferro.mangorhodes.deserializers.LocalDateOptionalTimeDeserializer;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,7 +28,8 @@ public class Mission {
     private String code;
     private String objective;
     private String type;
-    private long reward;
+    @Decimal128
+    private BigDecimal reward;
     private ArrayList<String> operatorCodes;
     @JsonDeserialize(using = LocalDateOptionalTimeDeserializer.class)
     private LocalDateTime startDate;
