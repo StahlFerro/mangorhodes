@@ -24,7 +24,12 @@ public class Department {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @NotEmpty(message = "Department category must not be empty!")
+    @NotEmpty(message = "Department code must not be empty!")
+    @Size(max = 25)
+    @Column(length = 25)
+    private String code;
+
+    @NotEmpty(message = "Department name must not be empty!")
     @Size(max = 50)
     @Column(length = 50)
     private String name;

@@ -26,3 +26,5 @@ alter table keycard add constraint FKb7un2vjkwamvwb6nktkvlgqjb foreign key (keyc
 alter table keycard add constraint FK2yh3ervh4mto5ueaxhn53w5ds foreign key (key_cards_id) references keycard_category (id)
 alter table keycard_category add constraint FKfqo0isv1xvy3gcmgxugdpqpw0 foreign key (department_id) references department (id)
 alter table room add constraint FKfbxs68qt7hfp6rkqan2eqbtyq foreign key (department_id) references department (id)
+
+alter table department add column code varchar(25)
