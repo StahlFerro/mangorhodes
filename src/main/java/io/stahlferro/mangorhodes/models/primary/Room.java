@@ -1,5 +1,8 @@
 package io.stahlferro.mangorhodes.models.primary;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,16 +11,20 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.security.Key;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Getter @Setter @ToString
-public class Room {
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Room implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Type(type = "uuid-char")
-    @Size(max = 36)
     @Column(length = 36, updatable = false, nullable = false)
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -28,8 +35,9 @@ public class Room {
     private int accessLevel;
 
     @ManyToOne
-    @JoinColumn
-    private Department department;
+    @JsonManagedReference
+    @JoinColumn(name = "department_id")
+    public Department department;
 
     public boolean accessAllowed(Keycard keycard) {
         KeycardCategory cardCateg = keycard.getCategory();

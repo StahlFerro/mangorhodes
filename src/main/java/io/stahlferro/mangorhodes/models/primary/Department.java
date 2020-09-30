@@ -1,22 +1,29 @@
 package io.stahlferro.mangorhodes.models.primary;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.bson.codecs.ObjectIdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Getter @Setter @ToString
-public class Department {
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Department implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Type(type = "uuid-char")
     @Column(length = 36, updatable = false, nullable = false)
@@ -33,4 +40,8 @@ public class Department {
     @Size(max = 50)
     @Column(length = 50)
     private String name;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "department")
+    Set<Room> rooms;
 }
