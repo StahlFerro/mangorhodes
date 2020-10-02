@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter @Setter @ToString
-public class _BaseMongoModel implements Serializable {
+public class _BaseSecondaryModel implements Serializable {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID uuid;
     @CreatedDate
     private LocalDateTime creationTimeStamp;
     @LastModifiedDate
     private LocalDateTime modificationTimeStamp;
-    public _BaseMongoModel() { this.uuid = UUID.randomUUID(); }
+    public _BaseSecondaryModel() { this.uuid = UUID.randomUUID(); }
 }
