@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter @Setter @ToString
-public class _BaseSecondaryModel implements Serializable {
+public class BaseSecondaryModel implements Serializable {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID uuid;
     @CreatedDate
     private LocalDateTime creationTimeStamp;
     @LastModifiedDate
     private LocalDateTime modificationTimeStamp;
-    public _BaseSecondaryModel() { this.uuid = UUID.randomUUID(); }
+    public BaseSecondaryModel() { this.uuid = UUID.randomUUID(); }
 }
