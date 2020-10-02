@@ -9,6 +9,8 @@ import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.GeneratedValue;
@@ -22,8 +24,7 @@ import java.util.UUID;
 
 @Document
 @Getter @Setter @ToString
-public class Mission {
-    private UUID uuid;
+public class Mission extends _BaseMongoModel {
     @Size(max = 20)
     private String code;
     private String objective;
@@ -33,13 +34,4 @@ public class Mission {
     private ArrayList<String> operatorCodes;
     @JsonDeserialize(using = LocalDateOptionalTimeDeserializer.class)
     private LocalDateTime startDate;
-    @CreationTimestamp
-    private Timestamp creationTimeStamp;
-    @UpdateTimestamp
-    private Timestamp modificationTimeStamp;
-
-
-    public Mission() {
-        this.uuid = UUID.randomUUID();
-    }
 }
