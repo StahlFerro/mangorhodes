@@ -35,9 +35,9 @@ public class Room implements Serializable {
     private int accessLevel;
 
     @ManyToOne
-    @JsonManagedReference
+//    @JsonManagedReference
     @JoinColumn(name = "department_id")
-    public Department department;
+    Department department;
 
     public boolean accessAllowed(Keycard keycard) {
         KeycardCategory cardCateg = keycard.getCategory();
