@@ -23,7 +23,6 @@ public class OperatorController {
 
     @PostMapping("/add")
     public ResponseEntity<Operator> addOperator(@Valid @RequestBody Operator operator) {
-        repository.save(operator);
-        return new ResponseEntity<>(operator, HttpStatus.CREATED);
+        return new ResponseEntity<>(repository.save(operator), HttpStatus.CREATED);
     }
 }

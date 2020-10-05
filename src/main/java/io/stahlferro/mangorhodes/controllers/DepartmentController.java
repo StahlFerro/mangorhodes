@@ -22,7 +22,6 @@ public class DepartmentController {
 
     @PostMapping("/add")
     public ResponseEntity<Department> addDepartment(@Valid @RequestBody Department department) {
-        repository.save(department);
-        return new ResponseEntity<>(department, HttpStatus.CREATED);
+        return new ResponseEntity<>(repository.save(department), HttpStatus.CREATED);
     }
 }

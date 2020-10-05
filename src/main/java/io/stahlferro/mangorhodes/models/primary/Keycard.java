@@ -13,16 +13,8 @@ import java.util.UUID;
 
 @Entity
 @Getter @Setter @ToString
-public class Keycard {
-    @Id
-    @Type(type = "uuid-char")
-    @Column(length = 36, updatable = false, nullable = false)
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID id;
+public class Keycard extends BasePrimaryModel{
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("id")
     private long number;
 
     @ManyToOne

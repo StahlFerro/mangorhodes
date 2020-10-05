@@ -21,7 +21,6 @@ public class RoomAccessController {
     }
     @PostMapping("/add")
     public ResponseEntity<RoomAccess> addRoomAccess(@Valid @RequestBody RoomAccess roomAccess) {
-        repository.save(roomAccess);
-        return new ResponseEntity<>(roomAccess, HttpStatus.CREATED);
+        return new ResponseEntity<>(repository.save(roomAccess), HttpStatus.CREATED);
     }
 }

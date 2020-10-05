@@ -20,16 +20,7 @@ import java.util.UUID;
 @Entity
 @Getter @Setter @ToString
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Department implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @Type(type = "uuid-char")
-    @Column(length = 36, updatable = false, nullable = false)
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID id;
+public class Department extends BasePrimaryModel {
 
     @NotEmpty(message = "Department code must not be empty!")
     @Size(max = 25)

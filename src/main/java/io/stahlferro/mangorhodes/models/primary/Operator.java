@@ -20,22 +20,13 @@ import java.util.UUID;
 
 @Entity
 @Getter @Setter @ToString
-public class Operator {
-    @Id
-    @Type(type = "uuid-char")
-    @Column(length = 36, updatable = false, nullable = false)
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID id;
+public class Operator extends BasePrimaryModel {
+
     private String code;
     private String codeName;
     private int accessLevel;
     @JsonDeserialize(using = LocalDateOptionalTimeDeserializer.class)
     private LocalDateTime hireDate;
-    @CreationTimestamp
-    private Timestamp creationTimeStamp;
-    @UpdateTimestamp
-    private Timestamp modificationTimeStamp;
     private BigDecimal bloodOriginiumCount;
 
     @OneToMany

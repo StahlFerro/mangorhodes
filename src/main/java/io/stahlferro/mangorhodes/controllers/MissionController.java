@@ -21,7 +21,6 @@ public class MissionController {
 
     @PostMapping("/add")
     public ResponseEntity<Mission> addMission(@Valid @RequestBody Mission mission) {
-        repository.save(mission);
-        return new ResponseEntity<>(mission, HttpStatus.CREATED);
+        return new ResponseEntity<>(repository.save(mission), HttpStatus.CREATED);
     }
 }
