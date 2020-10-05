@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.UUID;
 
 @Document
 @Getter @Setter @ToString
@@ -19,7 +20,5 @@ public class RoomAccess extends BaseSecondaryModel {
 //    private UUID uuid;
     private AccessType accessType;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    Room room;
+    private UUID roomId;
 }
