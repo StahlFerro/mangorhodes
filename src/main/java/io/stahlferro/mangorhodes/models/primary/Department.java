@@ -7,13 +7,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.bson.codecs.ObjectIdGenerator;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
 
@@ -44,4 +47,10 @@ public class Department implements Serializable {
     @JsonBackReference
     @OneToMany(mappedBy = "department")
     Set<Room> rooms;
+
+    @CreationTimestamp
+    private Timestamp creationTimestamp;
+
+    @UpdateTimestamp
+    private Timestamp modificationTimestamp;
 }

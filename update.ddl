@@ -28,3 +28,6 @@ alter table keycard_category add constraint FKfqo0isv1xvy3gcmgxugdpqpw0 foreign 
 alter table room add constraint FKfbxs68qt7hfp6rkqan2eqbtyq foreign key (department_id) references department (id)
 
 alter table department add column code varchar(25)
+
+alter table department add column creation_timestamp datetime(6)
+alter table department add column modification_timestamp datetime(6)
