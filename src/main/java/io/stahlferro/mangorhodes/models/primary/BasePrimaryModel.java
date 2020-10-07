@@ -9,26 +9,24 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
 @MappedSuperclass
 @Getter @Setter @ToString
-public class BasePrimaryModel implements Serializable {
+public class BasePrimaryModel {
     @Id
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Type(type = "uuid-char")
     @Column(length = 36, updatable = false, nullable = false)
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue(generator = "UUID", strategy = GenerationType.AUTO)
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
     @CreationTimestamp
+    @Column(updatable = false)
     private Timestamp creationTimestamp;
 
     @UpdateTimestamp

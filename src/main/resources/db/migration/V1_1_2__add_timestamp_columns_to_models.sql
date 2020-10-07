@@ -5,5 +5,6 @@ alter table keycard add column modification_timestamp datetime(6);
 alter table keycard_category add column creation_timestamp datetime(6);
 alter table keycard_category add column modification_timestamp datetime(6);
 alter table operator add column creation_timestamp datetime(6);
+alter table operator add column modification_timestamp datetime(6);
 alter table room add column creation_timestamp datetime(6);
 alter table room add column modification_timestamp datetime(6);
