@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/room-access")
+@RequestMapping("/api/room-accesses")
 public class RoomAccessController {
     @Autowired
     private RoomAccessRepository repository;
@@ -19,7 +19,7 @@ public class RoomAccessController {
     public ResponseEntity<List<RoomAccess>> fetchAllRoomAccesses() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<RoomAccess> addRoomAccess(@Valid @RequestBody RoomAccess roomAccess) {
         return new ResponseEntity<>(repository.save(roomAccess), HttpStatus.CREATED);
     }

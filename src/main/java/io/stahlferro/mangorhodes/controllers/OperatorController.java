@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/operator")
+@RequestMapping("/api/operators")
 public class OperatorController {
     @Autowired
     private OperatorRepository repository;
@@ -21,7 +21,7 @@ public class OperatorController {
 
     }
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<Operator> addOperator(@Valid @RequestBody Operator operator) {
         return new ResponseEntity<>(repository.save(operator), HttpStatus.CREATED);
     }

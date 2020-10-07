@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/mission")
+@RequestMapping("/api/missions")
 public class MissionController {
 
     @Autowired
     private MissionRepository repository;
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<Mission> addMission(@Valid @RequestBody Mission mission) {
         return new ResponseEntity<>(repository.save(mission), HttpStatus.CREATED);
     }

@@ -3,6 +3,7 @@ package io.stahlferro.mangorhodes.models.primary;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +20,7 @@ import java.util.UUID;
 
 @Entity
 @Getter @Setter @ToString
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Department extends BasePrimaryModel {
 
@@ -32,7 +34,7 @@ public class Department extends BasePrimaryModel {
     @Column(length = 50)
     private String name;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "department")
+    @ToString.Exclude
     Set<Room> rooms;
 }
