@@ -32,5 +32,5 @@ public class BasePrimaryModel implements Serializable {
     private Timestamp creationTimestamp;
 
     @UpdateTimestamp
-    private Timestamp modificationTimeStamp;
+    private Timestamp modificationTimestamp;
 }
