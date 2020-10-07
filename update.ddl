@@ -31,3 +31,6 @@ alter table department add column code varchar(25)
 
 alter table department add column creation_timestamp datetime(6)
 alter table department add column modification_timestamp datetime(6)
+
+alter table room add column creation_timestamp datetime(6)
+alter table room add column modification_timestamp datetime(6)

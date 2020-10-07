@@ -19,16 +19,9 @@ import java.util.UUID;
 @Entity
 @Getter @Setter @ToString
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Room implements Serializable {
+public class Room extends BasePrimaryModel {
 
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @Type(type = "uuid-char")
-    @Column(length = 36, updatable = false, nullable = false)
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID id;
 
     private String name;
 
