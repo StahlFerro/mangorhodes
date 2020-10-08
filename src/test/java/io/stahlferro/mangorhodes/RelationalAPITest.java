@@ -24,7 +24,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 @SpringBootTest
 @AutoConfigureMockMvc
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class InsertionTest {
+public class RelationalAPITest {
     //    @Autowired
 //    private WebApplicationContext context;
     @Autowired
@@ -58,6 +58,8 @@ public class InsertionTest {
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.name").value("Worst Department"))
                 .andExpect(jsonPath("$.code").value("WRS"))
+                .andExpect(jsonPath("$.creationTimestamp").exists())
+                .andExpect(jsonPath("$.modificationTimestamp").exists())
                 .andReturn();
 
         String content = result.getResponse().getContentAsString();
@@ -85,6 +87,8 @@ public class InsertionTest {
                 .andExpect(jsonPath("$.name").value("Worst Room"))
                 .andExpect(jsonPath("$.accessLevel").value("420"))
                 .andExpect(jsonPath("$.department").exists())
+                .andExpect(jsonPath("$.creationTimestamp").exists())
+                .andExpect(jsonPath("$.modificationTimestamp").exists())
                 .andReturn();
 
         String roomContent = roomResult.getResponse().getContentAsString();
