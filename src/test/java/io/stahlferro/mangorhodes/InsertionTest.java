@@ -49,7 +49,7 @@ public class InsertionTest {
 
         log.info("DEPARTMENT\n" + newDepartment);
 
-        MvcResult result = mockMvc.perform(post("/api/department/add")
+        MvcResult result = mockMvc.perform(post("/api/departments")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(newDepartment)
                 .accept(MediaType.APPLICATION_JSON))
@@ -75,7 +75,7 @@ public class InsertionTest {
 
         log.info("ROOM\n" + newRoom);
 
-        MvcResult roomResult = mockMvc.perform(post("/api/room/add")
+        MvcResult roomResult = mockMvc.perform(post("/api/rooms")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(newRoom)
                 .accept(MediaType.APPLICATION_JSON))
@@ -92,10 +92,10 @@ public class InsertionTest {
         String savedRoomId = savedRoomJSON.getString("id");
 
         log.info("Performing deletion of:\n" + "DepartmentId: " + savedDepartmentId + "\n" + "RoomId: " + savedRoomId);
-        this.mockMvc.perform(delete("/api/room/delete/" + savedRoomId))
+        this.mockMvc.perform(delete("/api/rooms/" + savedRoomId))
                 .andExpect(status().isOk());
         log.info("Room deleted");
-        this.mockMvc.perform(delete("/api/department/delete/" + savedDepartmentId))
+        this.mockMvc.perform(delete("/api/departments/" + savedDepartmentId))
                 .andExpect(status().isOk());
         log.info("Department deleted");
 
