@@ -12,19 +12,37 @@ services:
     environment:
       - POSTGRESQL_DATABASE=mangorhodes_primary
       - POSTGRESQL_USERNAME=postgres
-      - POSTGRESQL_PASSWORD=root
+      - POSTGRESQL_PASSWORD=postgres
     restart: on-failure
+
+  mongo-db-mangorhodes:
+    image: 'mongo:4.4'
+    ports:
+      - '27017:27017'
+    command: ["mongod"]
+    volumes:
+      - type: bind
+        source: './mongodb_master_data'
+        target: '/data/db'
+    environment:
+      - MONGO_INITDB_DATABASE=mangorhodes_secondary
+      - MONGO_INITDB_ROOT_USERNAME=mangorhodes
+      - MONGO_INITDB_ROOT_PASSWORD=mangorhodes
 
   mangorhodes-main:
     image: stahlferro/mangorhodes-docker
     depends_on:
       - postgresql-db-mangorhodes
+      - mongo-db-mangorhodes
     hostname: mangorhodes-host
     ports:
       - 8080:8080
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql-db-mangorhodes:5432/mangorhodes_primary
       - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATA_MONGODB_HOST=mongo-db-mangorhodes
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=mangorhodes_secondary
       - JWT_SECRET=mangorhodes
     restart: on-failure
