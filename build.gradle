@@ -10,9 +10,9 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 flyway {
-	def per_db_url = System.getenv('MGR_MYSQL_URL');
-	def per_db_username = System.getenv('MGR_MYSQL_USERNAME');
-	def per_db_password = System.getenv('MGR_MYSQL_PASSWORD');
+	def per_db_url = System.getenv('MGR_POSTGRESQL_URL');
+	def per_db_username = System.getenv('MGR_POSTGRESQL_USERNAME');
+	def per_db_password = System.getenv('MGR_POSTGRESQL_PASSWORD');
 	if (per_db_url) { url = per_db_url; }
 	else { url = System.getenv('DB_URL'); }
 	if (per_db_username) { user = per_db_username; }
@@ -48,7 +48,9 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'mysql:mysql-connector-java'
+
+	runtimeOnly 'org.postgresql:postgresql'
+//	runtimeOnly 'mysql:mysql-connector-java'
 
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {

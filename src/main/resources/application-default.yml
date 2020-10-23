@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${MGR_MYSQL_URL}
-    username: ${MGR_MYSQL_USERNAME}
-    password: ${MGR_MYSQL_PASSWORD}
+    url: ${MGR_POSTGRESQL_URL}
+    username: ${MGR_POSTGRESQL_USERNAME}
+    password: ${MGR_POSTGRESQL_PASSWORD}
   data:
     mongodb:
       host: ${MGR_MONGO_HOST}
